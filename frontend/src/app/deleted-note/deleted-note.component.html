@@ -1,0 +1,40 @@
+<div class="container-fluid g-0">
+  <app-header (sideNavToggled)="sideNavStatus = $event"></app-header>
+  <main>
+    <app-side-nav
+      [sideNavStatus]="sideNavStatus"
+      [ngClass]="{ 'app-side-nav-open': sideNavStatus }"
+      (mouseenter)="onHover()"
+      (mouseleave)="onHover()"
+    ></app-side-nav>
+    <div
+      class="display-area p-3"
+      [ngClass]="{ 'display-area-shrink': sideNavStatus }"
+    >
+      <div class="note-list row" *ngIf="deletededNoteList">
+        <div class="note-list-title">Recycle Bin</div>
+        <div
+          *ngFor="let note of deletededNoteList"
+          class="note-list-note col-4"
+        >
+          <div class="note-list-note-title">
+            {{ note.title }}
+          </div>
+          <div class="note-list-note-body">
+            {{ note.body }}
+          </div>
+          <div class="note-list-btns">
+            <div class="note-list-btn-right">
+              <button class="note-list-btn" (click)="deleteNote(note.id)">
+                Delete
+              </button>
+              <button class="note-list-btn" (click)="restoreNote(note.id)">
+                Restore
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

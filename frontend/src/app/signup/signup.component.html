@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand navbar-dark header">
+  <div class="navbar header-left">
+    <img src="../../assets/logo.jpeg" alt="" class="logo-img" />
+    <a class="navbar-brand" href="#">Keep</a>
+  </div>
+</nav>
+<main>
+  <div class="signup-box border border-primary mx-auto">
+    <div class="signup-box-title">SignUp</div>
+    <form [formGroup]="signupForm">
+      <div class="form-group signup-box-input">
+        <label class="col-form-label signup-box-input-label">UserName</label>
+        <input
+          type="text"
+          formControlName="userName"
+          class="form-control signup-box-input-input"
+        />
+        <div
+          *ngIf="
+            signupForm.controls['userName'].invalid &&
+            signupForm.controls['userName'].touched
+          "
+          class="signup-box-input-small"
+        >
+          UserName is required
+        </div>
+      </div>
+      <div class="form-group signup-box-input">
+        <label class="col-form-label signup-box-input-label">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control signup-box-input-input"
+        />
+        <div
+          *ngIf="
+            signupForm.controls['password'].invalid &&
+            signupForm.controls['password'].touched
+          "
+          class="signup-box-input-small"
+        >
+          Password is required
+        </div>
+      </div>
+      <div class="form-group signup-box-input">
+        <label class="col-form-label signup-box-input-label"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control signup-box-input-input"
+        />
+        <div
+          *ngIf="
+            signupForm.controls['confirmPassword'].invalid &&
+            signupForm.controls['confirmPassword'].touched
+          "
+          class="signup-box-input-small"
+        >
+          Confirm Password is required
+        </div>
+      </div>
+      <div class="signup-box-btn d-block mx-auto">
+        <button
+          class="signup-box-btn-btn d-block mx-auto"
+          [disabled]="!signupForm.valid"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="signup-box-result" *ngIf="invalidPasswordMsg">
+        {{ invalidPasswordMsg }}
+      </div>
+    </form>
+  </div>
+</main>

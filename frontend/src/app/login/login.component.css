@@ -1,0 +1,113 @@
+nav {
+  justify-content: space-between;
+}
+main {
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 100%;
+  top: 4rem;
+  z-index: 1;
+  background-color: #202124;
+}
+
+.header {
+  border-top: 0.5px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: #202124 !important;
+  padding-top: 5px;
+  top: 0rem;
+  height: 4.5rem;
+  z-index: 2;
+}
+
+.header-left {
+  padding: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logo-img {
+  height: 50px;
+  width: 50px;
+  margin-top: 1px;
+  object-fit: cover;
+}
+
+.login-box {
+  margin-top: 13%;
+  width: 25%;
+  border-radius: 3px;
+  border-color: #f3ab2e !important;
+}
+
+.login-box-title {
+  text-align: center;
+  margin-bottom: 15px;
+  background-color: #f3ab2e;
+  color: white;
+  padding: 10px;
+  font-size: large;
+}
+
+.login-box-input {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.login-box-input-label {
+  text-align: left;
+  font-weight: bold;
+}
+
+input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.login-box-input-input {
+  margin: auto;
+  padding-left: 5px;
+  margin-left: 10px;
+  border: gray solid 1px;
+  height: 35px;
+  border-radius: 3px;
+}
+
+.login-box-input-small {
+  display: block;
+  margin: 10px;
+  width: max-content;
+  color: red;
+}
+
+.login-box-btn {
+  padding: 20px;
+}
+
+.login-box-btn-btn {
+  background-color: #f3ab2e;
+  color: white;
+  padding: 8px;
+  width: 25%;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+}
+
+.login-box-btn-btn:disabled {
+  opacity: 0.65;
+}
+
+.login-box-result {
+  padding-bottom: 10px;
+  text-align: center;
+  color: red;
+}
+
+.login-box-signup {
+  text-align: center;
+  padding-bottom: 10px;
+}

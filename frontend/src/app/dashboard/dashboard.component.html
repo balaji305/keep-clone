@@ -1,0 +1,107 @@
+<div class="container-fluid g-0">
+  <app-header (sideNavToggled)="sideNavStatus = $event"></app-header>
+  <main>
+    <app-side-nav
+      [sideNavStatus]="sideNavStatus"
+      [ngClass]="{ 'app-side-nav-open': sideNavStatus }"
+      (mouseenter)="onHover()"
+      (mouseleave)="onHover()"
+    ></app-side-nav>
+    <div
+      class="display-area p-3"
+      [ngClass]="{ 'display-area-shrink': sideNavStatus }"
+    >
+      <div class="new-note-box border border-preimary mx-auto">
+        <form [formGroup]="newNoteForm">
+          <input
+            type="text"
+            formControlName="title"
+            required
+            placeholder="Title"
+          />
+          <br />
+          <textarea
+            type="text"
+            id="txtarea"
+            formControlName="body"
+            required
+            placeholder="Take a note..."
+            (keyup)="autogrow()"
+          ></textarea>
+          <div class="new-note-box-btns">
+            <div class="new-note-box-btns-left">
+              <i class="fa-solid fa-image"></i>
+              <i class="fa-solid fa-palette"></i>
+              <i class="fa-solid fa-thumbtack"></i>
+              <i class="fa-solid fa-box-archive"></i>
+            </div>
+            <div class="new-note-box-btns-right">
+              <button
+                class="new-note-box-btn"
+                (click)="addNote()"
+                [disabled]="!newNoteForm.valid"
+              >
+                Add
+              </button>
+              <button class="new-note-box-btn" (click)="clearNote()">
+                Close
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <br />
+      <div class="pinned-note-list row" *ngIf="pinnedNoteList">
+        <div class="note-list-title">Pinned</div>
+        <div *ngFor="let note of pinnedNoteList" class="note-list-note col-4">
+          <div class="note-list-note-title">
+            {{ note.title }}
+          </div>
+          <div class="note-list-note-body">
+            {{ note.body }}
+          </div>
+          <div class="note-list-btns">
+            <div class="note-list-btn-left">
+              <i
+                class="fa-solid fa-box-archive"
+                (click)="archiveNote(note.id)"
+              ></i>
+              <i class="fa-solid fa-thumbtack" (click)="pinNote(note.id)"></i>
+            </div>
+            <div class="note-list-btn-right">
+              <button class="note-list-btn" (click)="deleteNote(note.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="note-list row" *ngIf="normalNoteList">
+        <div *ngIf="pinnedNoteList" class="note-list-title">Others</div>
+        <div *ngFor="let note of normalNoteList" class="note-list-note col-4">
+          <div class="note-list-note-title">
+            {{ note.title }}
+          </div>
+          <div class="note-list-note-body">
+            {{ note.body }}
+          </div>
+          <div class="note-list-btns">
+            <div class="note-list-btn-left">
+              <i
+                class="fa-solid fa-box-archive"
+                (click)="archiveNote(note.id)"
+              ></i>
+              <i class="fa-solid fa-thumbtack" (click)="pinNote(note.id)"></i>
+            </div>
+            <div class="note-list-btn-right">
+              <button class="note-list-btn" (click)="deleteNote(note.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

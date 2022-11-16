@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand navbar-dark header">
+  <div class="navbar header-left">
+    <div
+      class="side-nav-button-left p-3 me-2 text-light"
+      (click)="sideNavToggle()"
+    >
+      <i class="fa-solid fa-thin fa-bars"></i>
+    </div>
+    <img src="../../assets/logo.jpeg" alt="" class="logo-img" />
+    <a class="navbar-brand" href="#">Keep</a>
+  </div>
+  <div class="navbar header-right">
+    <div class="side-nav-button-right p-2 me-3 text-light">
+      <i class="fa-solid fa-rotate-right"></i>
+    </div>
+    <div class="side-nav-button-right p-2 me-3 text-light">
+      <i class="fa-solid fa-gear"></i>
+    </div>
+    <div class="side-nav-button-right p-2 me-3 text-light">
+      <i class="fa-solid fa-right-from-bracket" [routerLink]="['/login']"></i>
+    </div>
+  </div>
+</nav>
