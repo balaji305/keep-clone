@@ -11,13 +11,13 @@ const {
 
 const router = require("express").Router();
 
-router.post("/addnote", addNote);
-router.get("/getallnotes", getAllNotes);
-router.get("/getnormalnotes", getNormalNotes);
-router.get("/getdeletednotes", getDeletedNotes);
-router.get("/getpinnednotes", getPinnedNotes);
-router.get("/getarchivednotes", getArchivedNotes);
-router.delete("/deletenote/:id", deleteNote);
-router.put("/updatenote/:id", updateNote);
+router.post("/api/addnote", addNote);
+router.get("/api/getallnotes", getAllNotes);
+router.get("/api/getnormalnotes", getNormalNotes);
+router.get("/api/getdeletednotes", getDeletedNotes);
+router.get("/api/getpinnednotes", getPinnedNotes);
+router.get("/api/getarchivednotes", getArchivedNotes);
+router.delete("/api/deletenote/:id", deleteNote);
+router.put("/api/updatenote/:id", updateNote);
 
 module.exports = router;
