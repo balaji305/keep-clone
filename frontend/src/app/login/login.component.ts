@@ -10,6 +10,10 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  invalidCredentialMsg!: string;
+  loginForm!: FormGroup;
+  submitted!: boolean;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -23,10 +27,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
-
-  invalidCredentialMsg!: string;
-  loginForm!: FormGroup;
-  submitted!: boolean;
 
   onSubmit() {
     this.submitted = true;

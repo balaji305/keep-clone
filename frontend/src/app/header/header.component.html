@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark header">
   <div class="navbar header-left">
     <div
+      *ngIf="!mobile"
       class="side-nav-button-left p-3 me-2 text-light"
       (click)="sideNavToggle()"
     >

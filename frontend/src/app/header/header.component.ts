@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +8,16 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Output() sideNavToggled = new EventEmitter<boolean>();
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
-
   menuStatus!: boolean;
+  mobile!: boolean;
+
+  constructor() {}
+
+  ngOnInit(): void {
+    if (window.screen.width <= 400) {
+      this.mobile = true;
+    }
+  }
 
   sideNavToggle() {
     this.menuStatus = !this.menuStatus;

@@ -10,6 +10,18 @@ import { NoteService } from './note.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  sideNavStatus!: boolean;
+  noteBoxStatus!: boolean;
+  mobile!: boolean;
+  id!: number;
+  user!: string;
+  userInput!: string;
+  newNoteForm!: FormGroup;
+  tempNote!: Note;
+  noteList!: Note[];
+  pinnedNoteList!: Note[];
+  normalNoteList!: Note[];
+
   constructor(
     private formBuilder: FormBuilder,
     private noteService: NoteService,
@@ -17,6 +29,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (window.screen.width <= 400) {
+      this.mobile = true;
+    }
     if (!localStorage.getItem('userName')) {
       this.router.navigate(['/login']);
     }
@@ -26,35 +41,14 @@ export class DashboardComponent implements OnInit {
     });
     this.getNotes();
   }
-  sideNavStatus!: boolean;
-  newNoteStatus!: boolean;
-  userInput!: string;
-  newNoteForm!: FormGroup;
-  noteList!: Note[];
-  pinnedNoteList!: Note[];
-  normalNoteList!: Note[];
-  tempNote!: Note;
-  id!: number;
-  user!: string;
-
-  getNotes() {
-    this.user = localStorage.getItem('userName') || '';
-    this.noteService.getAllNotes().subscribe((curNote) => {
-      this.noteList = curNote;
-      this.noteList.sort((first, second) =>
-        first.id < second.id ? -1 : first.id > second.id ? 1 : 0
-      );
-    });
-    this.noteService.getNormalNotes().subscribe((curNote) => {
-      this.normalNoteList = curNote;
-    });
-    this.noteService.getPinnedNotes().subscribe((curNote) => {
-      this.pinnedNoteList = curNote;
-    });
-  }
 
   onHover() {
     this.sideNavStatus = !this.sideNavStatus;
+    if (this.noteBoxStatus)
+      setTimeout(() => {
+        this.noteBoxStatus = !this.noteBoxStatus;
+      }, 250);
+    else this.noteBoxStatus = !this.noteBoxStatus;
   }
 
   autogrow() {
@@ -103,6 +97,22 @@ export class DashboardComponent implements OnInit {
     this.newNoteForm.reset();
   }
 
+  getNotes() {
+    this.user = localStorage.getItem('userName') || '';
+    this.noteService.getAllNotes().subscribe((curNote) => {
+      this.noteList = curNote;
+      this.noteList.sort((first, second) =>
+        first.id < second.id ? -1 : first.id > second.id ? 1 : 0
+      );
+    });
+    this.noteService.getNormalNotes().subscribe((curNote) => {
+      this.normalNoteList = curNote;
+    });
+    this.noteService.getPinnedNotes().subscribe((curNote) => {
+      this.pinnedNoteList = curNote;
+    });
+  }
+
   deleteNote(id: number) {
     this.noteList.forEach((note) => {
       if (note.id === id) {
@@ -130,6 +140,7 @@ export class DashboardComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
+
   archiveNote(id: number) {
     this.noteList.forEach((note) => {
       if (note.id === id) {

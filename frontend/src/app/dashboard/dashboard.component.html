@@ -10,45 +10,48 @@
     <div
       class="display-area p-3"
       [ngClass]="{ 'display-area-shrink': sideNavStatus }"
+      *ngIf="(noteBoxStatus && !mobile) || !noteBoxStatus"
     >
-      <div class="new-note-box border border-preimary mx-auto">
-        <form [formGroup]="newNoteForm">
-          <input
-            type="text"
-            formControlName="title"
-            required
-            placeholder="Title"
-          />
-          <br />
-          <textarea
-            type="text"
-            id="txtarea"
-            formControlName="body"
-            required
-            placeholder="Take a note..."
-            (keyup)="autogrow()"
-          ></textarea>
-          <div class="new-note-box-btns">
-            <div class="new-note-box-btns-left">
-              <i class="fa-solid fa-image"></i>
-              <i class="fa-solid fa-palette"></i>
-              <i class="fa-solid fa-thumbtack"></i>
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="new-note-box-btns-right">
-              <button
-                class="new-note-box-btn"
-                (click)="addNote()"
-                [disabled]="!newNoteForm.valid"
-              >
-                Add
-              </button>
-              <button class="new-note-box-btn" (click)="clearNote()">
-                Close
-              </button>
-            </div>
+      <div class="row">
+        <div class="col-lg-6 col-xs-12 mx-auto">
+          <div class="new-note-box mx-auto">
+            <form [formGroup]="newNoteForm">
+              <input
+                type="text"
+                formControlName="title"
+                required
+                placeholder="Title"
+              />
+              <br />
+              <textarea
+                type="text"
+                id="txtarea"
+                formControlName="body"
+                required
+                placeholder="Take a note..."
+                (keyup)="autogrow()"
+              ></textarea>
+              <div class="new-note-box-btns">
+                <div class="new-note-box-btns-left">
+                  <i class="fa-solid fa-thumbtack"></i>
+                  <i class="fa-solid fa-box-archive"></i>
+                </div>
+                <div class="new-note-box-btns-right">
+                  <button
+                    class="new-note-box-btn"
+                    (click)="addNote()"
+                    [disabled]="!newNoteForm.valid"
+                  >
+                    Add
+                  </button>
+                  <button class="new-note-box-btn" (click)="clearNote()">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
       <br />
       <div class="pinned-note-list row" *ngIf="pinnedNoteList">

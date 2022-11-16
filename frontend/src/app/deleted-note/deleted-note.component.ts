@@ -10,12 +10,18 @@ import { Router } from '@angular/router';
 })
 export class DeletedNoteComponent implements OnInit {
   sideNavStatus!: boolean;
-  deletededNoteList!: Note[];
-  tempNote!: Note;
+  noteBoxStatus!: boolean;
+  mobile!: boolean;
   user!: string;
+  tempNote!: Note;
+  deletededNoteList!: Note[];
+
   constructor(private noteService: NoteService, private router: Router) {}
 
   ngOnInit(): void {
+    if (window.screen.width <= 400) {
+      this.mobile = true;
+    }
     if (localStorage.getItem('userName') === '') {
       this.router.navigate(['/login']);
     }
@@ -24,12 +30,19 @@ export class DeletedNoteComponent implements OnInit {
 
   onHover() {
     this.sideNavStatus = !this.sideNavStatus;
+    if (this.noteBoxStatus)
+      setTimeout(() => {
+        this.noteBoxStatus = !this.noteBoxStatus;
+      }, 250);
+    else this.noteBoxStatus = !this.noteBoxStatus;
   }
+
   getNotes() {
     this.noteService.getDeletedNotes().subscribe((curNote) => {
       this.deletededNoteList = curNote;
     });
   }
+
   deleteNote(id: number) {
     this.noteService.deleteNote(id).subscribe({
       next: () => {
@@ -38,6 +51,7 @@ export class DeletedNoteComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
+
   restoreNote(id: number) {
     this.deletededNoteList.forEach((note) => {
       if (note.id === id) {
