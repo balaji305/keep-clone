@@ -36,9 +36,12 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(this.backendUrl + '/api/getpinnednotes', {
-      params: queryParams,
-    });
+    return this.http.get<Note[]>(
+      this.backendUrl + '/api/notes/getpinnednotes',
+      {
+        params: queryParams,
+      }
+    );
   }
 
   getArchivedNotes(): Observable<Note[]> {
@@ -46,9 +49,12 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(this.backendUrl + '/api/getarchivednotes', {
-      params: queryParams,
-    });
+    return this.http.get<Note[]>(
+      this.backendUrl + '/api/notes/getarchivednotes',
+      {
+        params: queryParams,
+      }
+    );
   }
 
   getDeletedNotes(): Observable<Note[]> {
@@ -56,27 +62,32 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(this.backendUrl + '/api/getdeletednotes', {
-      params: queryParams,
-    });
+    return this.http.get<Note[]>(
+      this.backendUrl + '/api/notes/getdeletednotes',
+      {
+        params: queryParams,
+      }
+    );
   }
 
   addNote(note: Note): Observable<Note> {
     const options = new HttpHeaders({ 'content-Type': 'application/json' });
-    return this.http.post<Note>(this.backendUrl + '/api/addnote', note, {
+    return this.http.post<Note>(this.backendUrl + '/api/notes/addnote', note, {
       headers: options,
     });
   }
 
   deleteNote(id: number): Observable<Note[]> {
-    return this.http.delete<Note[]>(this.backendUrl + '/api/deletenote/' + id);
+    return this.http.delete<Note[]>(
+      this.backendUrl + '/api/notes/deletenote/' + id
+    );
   }
 
   tempDeleteNote(unote: any): Observable<Note[]> {
     unote.isDeleted = !unote.isDeleted;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();
@@ -86,7 +97,7 @@ export class NoteService {
     unote.isPinned = !unote.isPinned;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();
@@ -96,7 +107,7 @@ export class NoteService {
     unote.isArchived = !unote.isArchived;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();
