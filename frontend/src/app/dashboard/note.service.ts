@@ -18,7 +18,7 @@ export class NoteService {
   }
 
   getAllNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.backendUrl + '/api/getallnotes');
+    return this.http.get<Note[]>(this.backendUrl + '/api/notes/getallnotes');
   }
 
   getNormalNotes(): Observable<Note[]> {
@@ -26,9 +26,12 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(this.backendUrl + '/api/getnormalnotes', {
-      params: queryParams,
-    });
+    return this.http.get<Note[]>(
+      this.backendUrl + '/api/notes/getnormalnotes',
+      {
+        params: queryParams,
+      }
+    );
   }
 
   getPinnedNotes(): Observable<Note[]> {
