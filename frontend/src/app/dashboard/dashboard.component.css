@@ -34,7 +34,7 @@ app-side-nav {
 
 .display-area {
   position: absolute;
-  left: 60px;
+  left: 55px;
   width: calc(100% - 60px);
   transition: left 250ms ease-in, width 250ms ease-in;
 }
@@ -54,11 +54,6 @@ app-side-nav {
   border: 1px solid gray;
   margin-top: 20px;
   margin-bottom: 50px;
-}
-
-input,
-input:focus {
-  height: auto;
 }
 
 input,
@@ -109,26 +104,26 @@ textarea:focus {
 
 .note-list {
   margin-top: 20px;
-  margin-left: 50px;
+  margin-bottom: 20px;
 }
 
 .pinned-note-list {
   margin-top: 20px;
-  margin-left: 50px;
   margin-bottom: 20px;
 }
 
 .note-list-title {
-  margin-left: 20px;
+  margin-left: max(5%, 10px);
   font-weight: bolder;
 }
 
 .note-list-note {
-  width: 29%;
   border: 1px solid gray;
   border-radius: 10px;
   align-self: center;
-  margin: 20px;
+  margin-left: 4%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding: 15px;
   padding-bottom: 5px;
 }

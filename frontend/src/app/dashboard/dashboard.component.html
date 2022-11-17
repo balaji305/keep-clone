@@ -54,53 +54,73 @@
         </div>
       </div>
       <br />
-      <div class="pinned-note-list row" *ngIf="pinnedNoteList">
+      <div class="pinned-note-list row mx-auto" *ngIf="pinnedNoteList">
         <div class="note-list-title">Pinned</div>
-        <div *ngFor="let note of pinnedNoteList" class="note-list-note col-4">
-          <div class="note-list-note-title">
-            {{ note.title }}
-          </div>
-          <div class="note-list-note-body">
-            {{ note.body }}
-          </div>
-          <div class="note-list-btns">
-            <div class="note-list-btn-left">
-              <i
-                class="fa-solid fa-box-archive"
-                (click)="archiveNote(note.id)"
-              ></i>
-              <i class="fa-solid fa-thumbtack" (click)="pinNote(note.id)"></i>
-            </div>
-            <div class="note-list-btn-right">
-              <button class="note-list-btn" (click)="deleteNote(note.id)">
-                Delete
-              </button>
+        <div class="note-list row mx-auto">
+          <div class="row mx-auto">
+            <div
+              *ngFor="let note of pinnedNoteList"
+              class="note-list-note col-xs-12 col-lg-3"
+            >
+              <div class="note-list-note-title">
+                {{ note.title }}
+              </div>
+              <div class="note-list-note-body">
+                {{ note.body }}
+              </div>
+              <div class="note-list-btns">
+                <div class="note-list-btn-left">
+                  <i
+                    class="fa-solid fa-box-archive"
+                    (click)="archiveNote(note.id)"
+                  ></i>
+                  <i
+                    class="fa-solid fa-thumbtack"
+                    (click)="pinNote(note.id)"
+                  ></i>
+                </div>
+                <div class="note-list-btn-right">
+                  <button class="note-list-btn" (click)="deleteNote(note.id)">
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <br />
-      <div class="note-list row" *ngIf="normalNoteList">
+      <div class="note-list row mx-auto" *ngIf="normalNoteList">
         <div *ngIf="pinnedNoteList" class="note-list-title">Others</div>
-        <div *ngFor="let note of normalNoteList" class="note-list-note col-4">
-          <div class="note-list-note-title">
-            {{ note.title }}
-          </div>
-          <div class="note-list-note-body">
-            {{ note.body }}
-          </div>
-          <div class="note-list-btns">
-            <div class="note-list-btn-left">
-              <i
-                class="fa-solid fa-box-archive"
-                (click)="archiveNote(note.id)"
-              ></i>
-              <i class="fa-solid fa-thumbtack" (click)="pinNote(note.id)"></i>
-            </div>
-            <div class="note-list-btn-right">
-              <button class="note-list-btn" (click)="deleteNote(note.id)">
-                Delete
-              </button>
+        <div class="note-list row mx-auto">
+          <div class="row mx-auto">
+            <div
+              *ngFor="let note of normalNoteList"
+              class="note-list-note col-xs-12 col-lg-3"
+            >
+              <div class="note-list-note-title">
+                {{ note.title }}
+              </div>
+              <div class="note-list-note-body">
+                {{ note.body }}
+              </div>
+              <div class="note-list-btns">
+                <div class="note-list-btn-left">
+                  <i
+                    class="fa-solid fa-box-archive"
+                    (click)="archiveNote(note.id)"
+                  ></i>
+                  <i
+                    class="fa-solid fa-thumbtack"
+                    (click)="pinNote(note.id)"
+                  ></i>
+                </div>
+                <div class="note-list-btn-right">
+                  <button class="note-list-btn" (click)="deleteNote(note.id)">
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

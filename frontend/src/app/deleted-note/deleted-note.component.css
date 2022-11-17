@@ -45,20 +45,19 @@ app-side-nav {
 
 .note-list {
   margin-top: 20px;
-  margin-left: 50px;
 }
 
 .note-list-title {
-  margin-left: 20px;
+  margin-left: max(5%, 10px);
   font-weight: bolder;
 }
 
 .note-list-note {
-  width: 30%;
   border: 1px solid gray;
   border-radius: 10px;
   align-self: center;
-  margin-top: 20px;
+  margin-left: 4%;
+  margin-top: 15px;
   padding: 15px;
   padding-bottom: 5px;
 }

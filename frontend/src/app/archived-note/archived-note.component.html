@@ -12,26 +12,33 @@
       [ngClass]="{ 'display-area-shrink': sideNavStatus }"
       *ngIf="(noteBoxStatus && !mobile) || !noteBoxStatus"
     >
-      <div class="note-list row" *ngIf="archivedNoteList">
-        <div *ngIf="archivedNoteList" class="note-list-title">Archived</div>
-        <div *ngFor="let note of archivedNoteList" class="note-list-note col-4">
-          <div class="note-list-note-title">
-            {{ note.title }}
-          </div>
-          <div class="note-list-note-body">
-            {{ note.body }}
-          </div>
-          <div class="note-list-btns">
-            <div class="note-list-btn-left">
-              <i
-                class="fa-solid fa-box-archive"
-                (click)="archiveNote(note.id)"
-              ></i>
-            </div>
-            <div class="note-list-btn-right">
-              <button class="note-list-btn" (click)="deleteNote(note.id)">
-                Delete
-              </button>
+      <div class="note-list row mx-auto" *ngIf="archivedNoteList">
+        <div class="note-list-title">Archived</div>
+        <div class="note-list row mx-auto">
+          <div class="row mx-auto">
+            <div
+              *ngFor="let note of archivedNoteList"
+              class="note-list-note col-xs-12 col-lg-3"
+            >
+              <div class="note-list-note-title">
+                {{ note.title }}
+              </div>
+              <div class="note-list-note-body">
+                {{ note.body }}
+              </div>
+              <div class="note-list-btns">
+                <div class="note-list-btn-left">
+                  <i
+                    class="fa-solid fa-box-archive"
+                    (click)="archiveNote(note.id)"
+                  ></i>
+                </div>
+                <div class="note-list-btn-right">
+                  <button class="note-list-btn" (click)="deleteNote(note.id)">
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
