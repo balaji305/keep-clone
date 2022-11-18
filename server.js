@@ -40,6 +40,7 @@ if (process.env.NODE_ENV === "production") {
       path.resolve(__dirname, "frontend", "dist", "keep", "index.html")
     );
   });
+  console.log(__dirname);
 }
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
