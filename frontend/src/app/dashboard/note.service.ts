@@ -11,14 +11,14 @@ export class NoteService {
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.backendUrl = 'http://localhost:5000';
+      this.backendUrl = 'http://localhost:5000/api/notes';
     } else {
-      this.backendUrl = '';
+      this.backendUrl = '/api/notes';
     }
   }
 
   getAllNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.backendUrl + '/api/notes/getallnotes');
+    return this.http.get<Note[]>(this.backendUrl + '/getallnotes');
   }
 
   getNormalNotes(): Observable<Note[]> {
@@ -26,12 +26,9 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(
-      this.backendUrl + '/api/notes/getnormalnotes',
-      {
-        params: queryParams,
-      }
-    );
+    return this.http.get<Note[]>(this.backendUrl + '/getnormalnotes', {
+      params: queryParams,
+    });
   }
 
   getPinnedNotes(): Observable<Note[]> {
@@ -39,12 +36,9 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(
-      this.backendUrl + '/api/notes/getpinnednotes',
-      {
-        params: queryParams,
-      }
-    );
+    return this.http.get<Note[]>(this.backendUrl + '/getpinnednotes', {
+      params: queryParams,
+    });
   }
 
   getArchivedNotes(): Observable<Note[]> {
@@ -52,12 +46,9 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(
-      this.backendUrl + '/api/notes/getarchivednotes',
-      {
-        params: queryParams,
-      }
-    );
+    return this.http.get<Note[]>(this.backendUrl + '/getarchivednotes', {
+      params: queryParams,
+    });
   }
 
   getDeletedNotes(): Observable<Note[]> {
@@ -65,32 +56,27 @@ export class NoteService {
       fromObject: { userName: localStorage.getItem('userName') || '' },
     });
 
-    return this.http.get<Note[]>(
-      this.backendUrl + '/api/notes/getdeletednotes',
-      {
-        params: queryParams,
-      }
-    );
+    return this.http.get<Note[]>(this.backendUrl + '/getdeletednotes', {
+      params: queryParams,
+    });
   }
 
   addNote(note: Note): Observable<Note> {
     const options = new HttpHeaders({ 'content-Type': 'application/json' });
-    return this.http.post<Note>(this.backendUrl + '/api/notes/addnote', note, {
+    return this.http.post<Note>(this.backendUrl + '/addnote', note, {
       headers: options,
     });
   }
 
   deleteNote(id: number): Observable<Note[]> {
-    return this.http.delete<Note[]>(
-      this.backendUrl + '/api/notes/deletenote/' + id
-    );
+    return this.http.delete<Note[]>(this.backendUrl + '/deletenote/' + id);
   }
 
   tempDeleteNote(unote: any): Observable<Note[]> {
     unote.isDeleted = !unote.isDeleted;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();
@@ -100,7 +86,7 @@ export class NoteService {
     unote.isPinned = !unote.isPinned;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();
@@ -110,7 +96,7 @@ export class NoteService {
     unote.isArchived = !unote.isArchived;
     const options = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http
-      .put<any>(this.backendUrl + `/api/notes/updatenote/${unote.id}`, unote, {
+      .put<any>(this.backendUrl + `/updatenote/${unote.id}`, unote, {
         headers: options,
       })
       .pipe();

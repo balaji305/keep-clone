@@ -11,15 +11,15 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.backendUrl = 'http://localhost:5000';
+      this.backendUrl = 'http://localhost:5000/api/auth';
     } else {
-      this.backendUrl = '';
+      this.backendUrl = '/api/auth';
     }
   }
 
   login(user: any): Observable<any> {
     const options = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.backendUrl + '/api/auth/login', user, {
+    return this.http.post(this.backendUrl + '/login', user, {
       headers: options,
     });
   }
